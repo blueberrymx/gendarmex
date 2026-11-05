@@ -79,10 +79,18 @@ section[id] {
 
 .parallax-bg-fixed.bg-fondo01 {
   background-image: url('../images/backgrounds/fondo01.jpg');
+  background-image: image-set(
+    url('../images/backgrounds/fondo01.webp') type('image/webp'),
+    url('../images/backgrounds/fondo01.jpg') type('image/jpeg')
+  );
 }
 
 .parallax-bg-fixed.bg-fondo02 {
   background-image: url('../images/backgrounds/fondo02.jpg');
+  background-image: image-set(
+    url('../images/backgrounds/fondo02.webp') type('image/webp'),
+    url('../images/backgrounds/fondo02.jpg') type('image/jpeg')
+  );
 }
 
 /* Fallback para navegadores que no soporten clip-path */
