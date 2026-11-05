@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Oficial
+Sitemap: https://gendarmex.com/sitemap.xml
