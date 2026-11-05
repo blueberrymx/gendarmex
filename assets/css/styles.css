@@ -1,0 +1,301 @@
+/* ==========================================================================
+   GendarMex Seguridad Privada - Custom Animations & Styles
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --color-orange: #FF6B00;
+  --color-orange-glow: rgba(255, 107, 0, 0.4);
+  --color-gold: #D4AF37;
+  --color-dark: #0B0F17;
+  --color-card: rgba(11, 15, 23, 0.92);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+img, video, iframe {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Margen superior de anclaje (Scroll Margin) consistente en PC y Móvil */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (max-width: 640px) {
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+/* ==========================================================================
+   True Fixed Parallax Backgrounds (Universal PC, Tablet & Mobile Support)
+   Utiliza clip-path: inset(0) en la sección contenedora y position: fixed en el fondo.
+   - PC, iPhone (iOS) y Android: Fondo 100% fijo, estático e inamovible al scrollear.
+   - Las tarjetas y el contenido flotan suavemente por encima del fondo.
+   - Cero distorsión, cero bugs de zoom de WebKit y cero desbordamientos laterales.
+   ========================================================================== */
+
+.parallax-section {
+  position: relative;
+  clip-path: inset(0);
+  -webkit-clip-path: inset(0);
+}
+
+.parallax-bg-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 0;
+  pointer-events: none;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.parallax-bg-fixed.bg-fondo01 {
+  background-image: url('../images/backgrounds/fondo01.jpg');
+}
+
+.parallax-bg-fixed.bg-fondo02 {
+  background-image: url('../images/backgrounds/fondo02.jpg');
+}
+
+/* Fallback para navegadores que no soporten clip-path */
+@supports not (clip-path: inset(0)) {
+  .parallax-section {
+    overflow: hidden;
+  }
+  .parallax-section .parallax-bg-fixed {
+    position: absolute;
+    height: 100%;
+    background-attachment: fixed;
+  }
+}
+
+/* Capa de contraste sutil y clara para garantizar visibilidad nítida de los fondos */
+.parallax-bg-fixed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 15, 23, 0.16);
+  pointer-events: none;
+}
+
+/* Glassmorphism Effect for readable floating cards */
+.glass-panel {
+  background: rgba(11, 15, 23, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-card {
+  background: rgba(11, 15, 23, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 107, 0, 0.7);
+  box-shadow: 0 20px 45px -10px var(--color-orange-glow);
+  transform: translateY(-6px);
+}
+
+/* Bridging Metrics Card Shadow */
+.metrics-bridge {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 107, 0, 0.2);
+}
+
+/* Clear text shadow to ensure crisp legibility on real backgrounds */
+.text-shadow-contrast {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Video Background Overlay (Más claro y visible) */
+.video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 15, 23, 0.55) 0%,
+    rgba(11, 15, 23, 0.30) 50%,
+    rgba(11, 15, 23, 0.75) 100%
+  );
+}
+
+/* Animated Gradient Text */
+.gradient-text-orange-gold {
+  background: linear-gradient(135deg, #FF6B00 0%, #FFA800 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradiente C-TPAT Naranja a Amarillo Brillante (Sin sombras oscuras ni tonos negros) */
+.gradient-text-ctpat {
+  background: linear-gradient(135deg, #FF6B00 0%, #FFA800 45%, #FFD700 85%, #FFE600 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: none !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7));
+}
+
+/* Pulse Badge */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.pulse-badge {
+  animation: pulse-ring 2.5s infinite ease-in-out;
+}
+
+/* Scroll Reveal Animations (Libre de desbordamiento horizontal en móviles y tablets) */
+.reveal-item,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-item.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Solo en pantallas grandes (Desktop >= 1024px) activar deslizamiento lateral */
+@media (min-width: 1024px) {
+  .reveal-left {
+    transform: translateX(-40px);
+  }
+  .reveal-left.revealed {
+    transform: translateX(0);
+  }
+  .reveal-right {
+    transform: translateX(40px);
+  }
+  .reveal-right.revealed {
+    transform: translateX(0);
+  }
+}
+
+/* Custom Scrollbar (Solo visible en computadoras de escritorio) */
+@media (min-width: 1025px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0F17;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #252e42;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF6B00;
+  }
+}
+
+/* Ocultar barra de scroll vertical derecha en móvil y tablet manteniendo scroll táctil 100% activo */
+@media (max-width: 1024px) {
+  html, body, * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+}
+
+/* Soporte y optimización táctil cinemática para carruseles móviles */
+.carousel-touch-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+  scroll-padding: 0 1rem;
+}
+
+.carousel-touch-track::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.carousel-touch-item {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+/* Floating Physics Animation (Efecto Levitación Suave) */
+@keyframes float-subtle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-floating {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+/* Carousel No-Scrollbar Helper (Móvil) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Highlight Flash Animation para formulario de solicitud */
+@keyframes form-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.9); }
+  50% { box-shadow: 0 0 40px 10px rgba(255, 107, 0, 0.7); }
+  100% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
+}
+
+.flash-highlight {
+  animation: form-highlight 1.5s ease-out;
+}
+
+
